@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Articulo;
+use App\Categoria;
 use Illuminate\Http\Request;
 
 class ArticuloController extends Controller
@@ -14,7 +15,10 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        //
+        $articulos = Articulo::orderBy('id')
+        ->paginate(4);
+        $categorias = Categoria::all();
+        return view("articulos.index", compact("articulos", "categorias"));
     }
 
     /**
@@ -24,7 +28,8 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        //
+        $categorias = Categoria::all();
+        return view('articulos.create', compact('categorias'));
     }
 
     /**
@@ -46,7 +51,7 @@ class ArticuloController extends Controller
      */
     public function show(Articulo $articulo)
     {
-        //
+        return view("articulos.show", compact("articulo"));
     }
 
     /**
@@ -57,7 +62,8 @@ class ArticuloController extends Controller
      */
     public function edit(Articulo $articulo)
     {
-        //
+        $categorias = Categoria::all();
+        return view('articulos.edit',compact('articulo','categorias'));
     }
 
     /**

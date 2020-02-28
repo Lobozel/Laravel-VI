@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource("articulos", "ArticuloController");
+Route::resource("categorias", "CategoriaController");
+Route::resource("vendedores", "VendedorController");

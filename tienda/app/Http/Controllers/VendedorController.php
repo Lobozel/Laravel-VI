@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Vendedor;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class VendedorController extends Controller
@@ -14,7 +13,10 @@ class VendedorController extends Controller
      */
     public function index()
     {
-        //
+        $vendedores = DB::table('vendedores')
+        ->orderBy('apellidos')
+        ->paginate(4);
+        return view("vendedores.index", compact("vendedores"));
     }
 
     /**
@@ -24,7 +26,7 @@ class VendedorController extends Controller
      */
     public function create()
     {
-        //
+        return view('vendedores.create');
     }
 
     /**
@@ -44,9 +46,12 @@ class VendedorController extends Controller
      * @param  \App\Vendedor  $vendedor
      * @return \Illuminate\Http\Response
      */
-    public function show(Vendedor $vendedor)
+    public function show($id)
     {
-        //
+        $vendedor=DB::table('vendedores')
+        ->where('id', $id)->get()[0];
+        
+        return view('vendedores.show',compact('vendedor'));
     }
 
     /**
@@ -55,9 +60,12 @@ class VendedorController extends Controller
      * @param  \App\Vendedor  $vendedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vendedor $vendedor)
+    public function edit($id)
     {
-        //
+        $vendedor=DB::table('vendedores')
+        ->where('id', $id)->get()[0];
+
+        return view('vendedores.edit',compact('vendedor'));
     }
 
     /**
@@ -67,9 +75,10 @@ class VendedorController extends Controller
      * @param  \App\Vendedor  $vendedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vendedor $vendedor)
+    public function update(Request $request, $id)
     {
-        //
+        $vendedor=DB::table('vendedores')
+        ->where('id', $id)->get()[0];
     }
 
     /**
@@ -78,8 +87,9 @@ class VendedorController extends Controller
      * @param  \App\Vendedor  $vendedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendedor $vendedor)
+    public function destroy($id)
     {
-        //
+        $vendedor=DB::table('vendedores')
+        ->where('id', $id)->get()[0];
     }
 }
