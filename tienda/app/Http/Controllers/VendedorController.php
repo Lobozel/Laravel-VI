@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Articulo;
+use App\Categoria;
 
 class VendedorController extends Controller
 {
@@ -91,5 +93,24 @@ class VendedorController extends Controller
     {
         $vendedor=DB::table('vendedores')
         ->where('id', $id)->get()[0];
+    }
+
+    //Otras funciones/recursos
+    public function showVentas($id)
+    {
+        $vendedor=DB::table('vendedores')
+        ->where('id', $id)->get()[0];
+        
+        // $vendidos=DB::table('articulos as a','ventas as v')
+        // ->select('a.nombre','v.unidades')
+        // ->where('v.articulo_id','a.id')
+        // ->where('v.vendedor_id',$id)
+        // ->orderBy('v.id');
+
+        $vendidos = DB::select("select a.nombre, a.imagen, v.unidades from articulos as a, ventas as v where articulo_id=a.id and vendedor_id=".$id." order by v.id");
+        $total = DB::table('ventas')
+        ->where('vendedor_id', $id)
+        ->sum('unidades');
+        return view('vendedores.ventas',compact('vendedor','vendidos','total'));
     }
 }

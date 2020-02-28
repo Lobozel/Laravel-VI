@@ -8,9 +8,17 @@
 @section('contenido')
     <span class="clearfix"></span>
     <div class="card text-white bg-info mt-5 mx-auto" style="max-width: 38rem;">
-        <div class="card-header text-center"><b>Detalles del Vendedor</b></div>
+        <div class="card-header text-center"><b>Detalles de sus Ventas</b></div>
         <div class="card-body" style="font-size: 1.1em">
-                <table style="width: 35rem;">
+            <ul>
+            @foreach ($vendidos as $item)
+            <li>
+                {{$item->nombre}}&nbsp;&nbsp;&nbsp;{{$item->unidades}}
+            </li>
+            @endforeach
+        </ul>
+            Ventas totales {{$total}}
+                {{-- <table style="width: 35rem;">
                     <tr>                        
                         <td>
                             <b>Nombre:&nbsp;&nbsp;</b>
@@ -46,9 +54,9 @@
                             {{$vendedor->direccion}}
                         </td>
                     </tr>
-                </table>
+                </table> --}}
         </div>
-        <a href="{{route('vendedores.ventas', $vendedor->id)}}" class="float-left btn btn-secondary">Ventas</a>
-        <a href="{{route('vendedores.index')}}" class="float-left btn btn-success">Volver</a>
+        <a href="#" class="float-left btn btn-secondary">Volver a los datos del Vendedor</a>
+        <a href="{{route('vendedores.index')}}" class="float-left btn btn-success">Ir a Vendedores</a>
     </div>
 @endsection
