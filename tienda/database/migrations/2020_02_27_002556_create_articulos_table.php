@@ -15,7 +15,8 @@ class CreateArticulosTable extends Migration
     {
         Schema::create('articulos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');            
+            $table->string('nombre');
+            $table->string('descripcion',320);
             $table->decimal('precio',10,2);
             $table->integer('stock')->default(0);
             $table->string('imagen')->default('/img/articulos/default.png');
