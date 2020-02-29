@@ -10,9 +10,10 @@ Gestion Categorias
     <p class="alert alert-success my-3">{{$text}}</p>
 @endif
 <a href="{{route('categorias.create')}}" class="btn btn-info mb-3"><i class="fa fa-plus"></i> Crear categoria</a>
+<!--Búsquedas-->
 <form action="{{route('categorias.index')}}" name="search" method="get" class="form-inline float-right">
-  <!--TODO-->
-  <!--Búsqueda/s-->
+  <i class="fa fa-search fa-2x ml-2 mr-2" aria-hidden="true"></i>
+  <input type='text' name='nombre' placeholder="Buscar por Nombre">
   <input type="submit" value="Buscar" class="btn btn-info ml-2">
 </form>
  <table class="table table-striped table-dark">

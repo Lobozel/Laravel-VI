@@ -23,11 +23,11 @@ Guardar una Nueva Categoría
       </div>
     </div>
       <div class="form-row mt-3">
-          <textarea class="form-control" placeholder="Descripción"></textarea>
+          <textarea name='descripcion' class="form-control" placeholder="Descripción"></textarea>
       </div>
       <div class="form-row mt-3">
         <div class="col">
-            <b>Imagen</b>&nbsp;<input type='file' name='imagen' accept="image/*">
+            <b>Imagen</b>&nbsp;<input type='file' name='logo' id='logo' accept="image/*">
         </div>
       </div>
       <div class="form-row mt-3">

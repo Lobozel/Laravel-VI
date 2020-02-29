@@ -26,7 +26,7 @@ Guardar un Nuevo Artículo
         <div class="col">
           <select name='categoria' class="form-control">
               @foreach ($categorias as $categoria)
-                  <option>{{$categoria->nombre}}</option>
+                <option value='{{$categoria->id}}'>{{$categoria->nombre}}</option>
               @endforeach
         </select>
         </div>        
@@ -34,11 +34,11 @@ Guardar un Nuevo Artículo
             <input type="number" class="form-control" placeholder="Precio(€)" name="precio" required step="0.50" min="0">
           </div>
           <div class="col">
-            <input type="number" class="form-control" placeholder="Stock" name="klms" min="0">
+            <input type="number" class="form-control" placeholder="Stock" name="stock" min="0">
           </div>
       </div>
       <div class="form-row mt-3">
-          <textarea class="form-control" placeholder="Descripción"></textarea>
+          <textarea name='descripcion' class="form-control" placeholder="Descripción"></textarea>
       </div>
       <div class="form-row mt-3">
         <div class="col">

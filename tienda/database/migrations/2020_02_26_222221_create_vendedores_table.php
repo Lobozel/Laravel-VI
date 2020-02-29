@@ -18,9 +18,9 @@ class CreateVendedoresTable extends Migration
             $table->string('nombre',60);
             $table->string('apellidos',120);
             $table->string('email',180)->unique();
-            $table->string('direccion',220);
+            $table->string('direccion',220)->nullable();
             $table->string('telefono',60)->nullable();
-            $table->string('imagen')->default('/img/vendedores/default.png');
+            $table->string('foto')->default('/img/vendedores/default.png');
             $table->timestamps();
         });
     }

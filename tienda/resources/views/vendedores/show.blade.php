@@ -1,9 +1,9 @@
 @extends('plantillas.plantilla')
 @section('titulo')
-    {{$vendedor->nombre}} {{$vendedor->apellidos}}
+    {{$vendedore->nombre}} {{$vendedore->apellidos}}
 @endsection
 @section('cabecera')
-    <i>Vendedor <b>{{$vendedor->apellidos}}, {{($vendedor->nombre)}}</b></i>
+    <i>Vendedor <b>{{$vendedore->apellidos}}, {{($vendedore->nombre)}}</b></i>
 @endsection
 @section('contenido')
     <span class="clearfix"></span>
@@ -14,41 +14,41 @@
                     <tr>                        
                         <td>
                             <b>Nombre:&nbsp;&nbsp;</b>
-                            {{$vendedor->nombre}}                            
+                            {{$vendedore->nombre}}                            
                         </td>
                         <td rowspan="5">
                             <div class="float-right">
-                                <img src="{{asset($vendedor->imagen)}}" width="160px" heght="160px" class="rounded-circle">
+                                <img src="{{asset($vendedore->foto)}}" width="160px" heght="160px" class="rounded-circle">
                             </div>
                         </td>
                     </td>
                     <tr>
                         <td>
                             <b>Apellidos:&nbsp;&nbsp;</b>
-                            {{$vendedor->apellidos}}  
+                            {{$vendedore->apellidos}}  
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <b>Email:&nbsp;&nbsp;</b>
-                            {{$vendedor->email}}  
+                            {{$vendedore->email}}  
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <b>Teléfono:&nbsp;&nbsp;</b>
-                            {{$vendedor->telefono}}                                
+                            {{$vendedore->telefono}}                                
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <b>Dirección:&nbsp;&nbsp;</b>
-                            {{$vendedor->direccion}}
+                            {{$vendedore->direccion}}
                         </td>
                     </tr>
                 </table>
         </div>
-        <a href="{{route('vendedores.ventas', $vendedor->id)}}" class="float-left btn btn-secondary">Ventas</a>
+        <a href="{{route('vendedores.ventas', $vendedore)}}" class="float-left btn btn-secondary">Ventas</a>
         <a href="{{route('vendedores.index')}}" class="float-left btn btn-success">Volver</a>
     </div>
 @endsection

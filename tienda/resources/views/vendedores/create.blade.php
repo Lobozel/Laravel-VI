@@ -38,7 +38,7 @@ Dar de Alta a un Nuevo Vendedor
       </div>
       <div class="form-row mt-3">
         <div class="col">
-            <b>Imagen</b>&nbsp;<input type='file' name='imagen' accept="image/*">
+            <b>Imagen</b>&nbsp;<input type='file' name='foto' accept="image/*">
         </div>
       </div>
       <div class="form-row mt-3">

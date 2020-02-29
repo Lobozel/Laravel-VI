@@ -1,9 +1,9 @@
 @extends('plantillas.plantilla')
 @section('titulo')
-Editar {{$vendedor->nombre}} {{$vendedor->apellidos}}
+Editar {{$vendedore->nombre}} {{$vendedore->apellidos}}
 @endsection
 @section('cabecera')
-Actualizar información de {{$vendedor->apellidos}}, {{$vendedor->nombre}}
+Actualizar información de {{$vendedore->apellidos}}, {{$vendedore->nombre}}
 @endsection
 @section('contenido')
 @if($errors->any())
@@ -15,36 +15,37 @@ Actualizar información de {{$vendedor->apellidos}}, {{$vendedor->nombre}}
         </ul>
     </div>
 @endif
-<form name="c" method='POST' action="{{route('vendedores.update', $vendedor->id)}}" enctype="multipart/form-data">
+<form name="c" method='POST' action="{{route('vendedores.update', $vendedore)}}" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div class="form-row">
       <div class="col">
-        <input type="text" class="form-control" value="{{$vendedor->nombre}}" name='nombre' required>
+        <input type="text" class="form-control" value="{{$vendedore->nombre}}" name='nombre' required>
       </div>
       <div class="col">
-        <input type="text" class="form-control" value="{{$vendedor->apellidos}}" name='apellidos' required>
+        <input type="text" class="form-control" value="{{$vendedore->apellidos}}" name='apellidos' required>
       </div>
     </div>
     <div class="form-row mt-3">    
           <div class="col">
-            <input type="text" class="form-control" value="{{$vendedor->email}}" name="email" required>
+            <input type="text" class="form-control" value="{{$vendedore->email}}" name="email" required>
           </div>
           <div class="col">
-            <input type="text" class="form-control" value="{{$vendedor->telefono}}" name="telefono" >
+            <input type="text" class="form-control" value="{{$vendedore->telefono}}" name="telefono" >
           </div>
       </div>
       <div class="form-row mt-3">
-        <input type="text" class="form-control" value="{{$vendedor->direccion}}" name="direccion" >
+        <input type="text" class="form-control" value="{{$vendedore->direccion}}" name="direccion" >
       </div>
       <div class="form-row mt-3">
         <div class="col">
-          <img src="{{asset($vendedor->imagen)}}" width="150vw" height="150vh" class='rounded-circle mr-3'>
-          <b>Imagen</b>&nbsp;<input type='file' name='imagen' accept="image/*">
+          <img src="{{asset($vendedore->foto)}}" width="150vw" height="150vh" class='rounded-circle mr-3'>
+          <b>Imagen</b>&nbsp;<input type='file' name='foto' accept="image/*">
         </div>
       </div>
       <div class="form-row mt-3">
         <div class="col">
-            <input type='submit' value='Guardar' class='btn btn-success mr-3'>
+            <input type='submit' value='Modificar' class='btn btn-success mr-3'>
             <input type='reset' value='Limpiar' class='btn btn-warning mr-3'>
             <a href={{route('vendedores.index')}} class='btn btn-info'>Volver</a>
         </div>

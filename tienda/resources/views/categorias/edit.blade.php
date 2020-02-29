@@ -24,7 +24,7 @@ Actualizar Categoría {{$categoria->nombre}}
       </div>
     </div>    
       <div class="form-row mt-3">
-      <textarea class="form-control">{{$categoria->descripcion}}</textarea>
+      <textarea name='descripcion' class="form-control">{{$categoria->descripcion}}</textarea>
     </div>
       <div class="form-row mt-3">
         <div class="col">

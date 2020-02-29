@@ -1,9 +1,9 @@
 @extends('plantillas.plantilla')
 @section('titulo')
-    {{$vendedor->nombre}} {{$vendedor->apellidos}}
+    {{$vendedore->nombre}} {{$vendedore->apellidos}}
 @endsection
 @section('cabecera')
-    <i>Vendedor <b>{{$vendedor->apellidos}}, {{($vendedor->nombre)}}</b></i>
+    <i>Vendedor <b>{{$vendedore->apellidos}}, {{($vendedore->nombre)}}</b></i>
 @endsection
 @section('contenido')
     <span class="clearfix"></span>
@@ -13,50 +13,13 @@
             <ul>
             @foreach ($vendidos as $item)
             <li>
-                {{$item->nombre}}&nbsp;&nbsp;&nbsp;{{$item->unidades}}
+            <a class='text-white' href='{{route('articulos.show', $item->id)}}'>{{$item->nombre}}</a>&nbsp;&nbsp;&nbsp;{{$item->unidades}} Unds.
             </li>
             @endforeach
         </ul>
-            Ventas totales {{$total}}
-                {{-- <table style="width: 35rem;">
-                    <tr>                        
-                        <td>
-                            <b>Nombre:&nbsp;&nbsp;</b>
-                            {{$vendedor->nombre}}                            
-                        </td>
-                        <td rowspan="5">
-                            <div class="float-right">
-                                <img src="{{asset($vendedor->imagen)}}" width="160px" heght="160px" class="rounded-circle">
-                            </div>
-                        </td>
-                    </td>
-                    <tr>
-                        <td>
-                            <b>Apellidos:&nbsp;&nbsp;</b>
-                            {{$vendedor->apellidos}}  
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Email:&nbsp;&nbsp;</b>
-                            {{$vendedor->email}}  
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Teléfono:&nbsp;&nbsp;</b>
-                            {{$vendedor->telefono}}                                
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Dirección:&nbsp;&nbsp;</b>
-                            {{$vendedor->direccion}}
-                        </td>
-                    </tr>
-                </table> --}}
+            Ventas totales: {{$total}}
         </div>
-        <a href="#" class="float-left btn btn-secondary">Volver a los datos del Vendedor</a>
+        <a href="{{route('vendedores.show', $vendedore)}}" class="float-left btn btn-secondary">Volver a los datos del Vendedor</a>
         <a href="{{route('vendedores.index')}}" class="float-left btn btn-success">Ir a Vendedores</a>
     </div>
 @endsection

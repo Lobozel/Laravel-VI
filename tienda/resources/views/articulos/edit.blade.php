@@ -39,11 +39,11 @@ Actualizar Artículo {{$articulo->nombre}}
             <input type="number" class="form-control" value="{{$articulo->precio}}" name="precio" required step="0.50" min="0">
           </div>
           <div class="col">
-            <input type="number" class="form-control" value="{{$articulo->stock}}" name="klms" min="0">
+            <input type="number" class="form-control" value="{{$articulo->stock}}" name="stock" min="0">
           </div>
       </div>
       <div class="form-row mt-3">
-      <textarea class="form-control">{{$articulo->descripcion}}</textarea>
+      <textarea name='descripcion' class="form-control">{{$articulo->descripcion}}</textarea>
     </div>
       <div class="form-row mt-3">
         <div class="col">

@@ -10,10 +10,55 @@ Gestion Articulos
     <p class="alert alert-success my-3">{{$text}}</p>
 @endif
 <a href="{{route('articulos.create')}}" class="btn btn-info mb-3"><i class="fa fa-plus"></i> Crear articulo</a>
-<form action="{{route('articulos.index')}}" name="search" method="get" class="form-inline float-right">
-  <!--TODO-->
-  <!--Búsqueda/s-->
+<!--Búsquedas-->
+<form name="search" method="get" action="{{route('articulos.index')}}" class="form-inline mb-2">
+<table class='container'>
+  <tr>
+    <td>
+  <i class="fa fa-search fa-2x ml-2 mr-2" aria-hidden="true"></i>
+  <input type='text' name='nombre' placeholder="Buscar por Nombre">&nbsp;
+   <select name='categoria' class='form-control mr-2' >
+    <option value='%'>Todas categorias</option>
+    @foreach($categorias as $categoria)
+      @if($categoria->id==$request->categoria)
+        <option value='{{$categoria->id}}' selected>{{$categoria->nombre}}</option>
+      @else
+        <option value='{{$categoria->id}}'>{{$categoria->nombre}}</option>
+      @endif
+    @endforeach
+  </select> 
+  <select name="precio" class="form-control" >
+  <option value='0'>Todos precios</option>
+  <?php $cont=1; ?>
+  @foreach ($precios as $precio)
+  @if($cont==$request->precio)
+  <option selected="" value="<?php echo $cont ?>">{{$precio}}</option>
+@else
+  <option value="<?php echo $cont ?>">{{$precio}}</option>
+@endif
+<?php $cont++; ?>
+  @endforeach
+ </select> 
   <input type="submit" value="Buscar" class="btn btn-info ml-2">
+{{-- </form> --}}
+<!--Orden-->
+</td>
+<td class='float-center'>
+{{-- <form action="{{route('articulos.index')}}" name="search" method="get" class="form-inline mb-1"> --}}  
+  <select name='campo' onchange="this.form.submit()">
+    @foreach ($campos as $campo => $dato)
+        @if (isset($_GET['campo']) && $_GET['campo']==$campo)
+  <option selected value='{{$campo}}'>{{$dato}}</option>
+        @else
+  <option value='{{$campo}}'>{{$dato}}</option>
+        @endif
+    @endforeach
+  </select>
+  <button onclick='this.form.submit()' class='btn btn-primary fa fa-arrow-down' name='order' value='desc'></button>
+  <button onclick='this.form.submit()' class='btn btn-danger fa fa-arrow-up' name='order' value='asc'></button>
+</td>
+</tr>
+</table>
 </form>
  <table class="table table-striped table-dark">
   <thead>

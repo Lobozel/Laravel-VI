@@ -12,10 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
-Route::get('vendedores/{vendedor}/showVentas', 'VendedorController@showVentas')->name('vendedores.ventas');
+Route::get('vendedores/{vendedore}/showVentas', 'VendedorController@showVentas')->name('vendedores.ventas');
+Route::get('articulos/{articulo}/vender', 'ArticuloController@vender')->name('articulos.vender');
 
 Route::resource("articulos", "ArticuloController");
 Route::resource("categorias", "CategoriaController");
 Route::resource("vendedores", "VendedorController");
+
+Route::post("vender", "ArticuloController@updateVenta")->name("articulos.updateVenta");

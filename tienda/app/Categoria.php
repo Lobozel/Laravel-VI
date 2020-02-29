@@ -12,4 +12,8 @@ class Categoria extends Model
     public function articulos(){
         return $this->hasMany(Articulo::class);
     }
+
+    public function scopeNombre($query, $v){
+        return $query->where('nombre','like',"%$v%");
+    }
 }
