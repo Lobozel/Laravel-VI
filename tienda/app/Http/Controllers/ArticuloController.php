@@ -78,6 +78,7 @@ class ArticuloController extends Controller
         $articulo->nombre=$datos['nombre'];
         $articulo->categoria_id=$request->categoria;
         $articulo->precio=$datos['precio'];
+        if($request->stock!=null)
         $articulo->stock=$request->stock;
         $articulo->descripcion=$request->descripcion;
 
@@ -175,15 +176,16 @@ class ArticuloController extends Controller
     }
 
     //Otras funciones/recursos
-    public function vender(Articulo $articulo){
+    public function vender(Articulo $articulo)
+    {
         $vendedores = DB::table('vendedores')
         ->orderBy('apellidos')
         ->get();
         return view('articulos.vender',compact('articulo','vendedores'));
     }
 
-    public function updateVenta(Request $request){
-
+    public function updateVenta(Request $request)
+    {
         $registro = DB::select("select id, unidades from ventas where articulo_id=".$request->articulo." and vendedor_id=".$request->vendedores);
 
         if(empty($registro)){
@@ -209,5 +211,20 @@ class ArticuloController extends Controller
             ->update(['stock' => $request->stockInicial-$request->stock]);
 
         return redirect()->route('articulos.index')->with("mensaje","Se han vendido ".$request->stock." unidades del artículo ".$request->nombre); 
+    }
+
+    public function addStock(Articulo $articulo)
+    {
+        return view('articulos.addstock',compact('articulo'));
+    }
+
+    public function updateStock(Request $request)
+    {
+        //Actualizo el stock del articulo
+        DB::table('articulos')
+            ->where('id', $request->articulo)
+            ->update(['stock' => $request->stockInicial+$request->stock]);
+
+        return redirect()->route('articulos.index')->with("mensaje","Se han añadido ".$request->stock." unidades al inventario del artículo ".$request->nombre); 
     }
 }
